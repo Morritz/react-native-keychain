@@ -140,13 +140,13 @@ public class KeychainModule extends ReactContextBaseJavaModule {
     super(reactContext);
     prefsStorage = new PrefsStorage(reactContext);
 
-    addCipherStorageToMap(new CipherStorageFacebookConceal(reactContext));
+    //addCipherStorageToMap(new CipherStorageFacebookConceal(reactContext));
     addCipherStorageToMap(new CipherStorageKeystoreAesCbc());
 
     // we have a references to newer api that will fail load of app classes in old androids OS
-    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-      addCipherStorageToMap(new CipherStorageKeystoreRsaEcb());
-    }
+    //if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+    //  addCipherStorageToMap(new CipherStorageKeystoreRsaEcb());
+    //}
   }
 
   /** Allow initialization in chain. */
@@ -256,8 +256,8 @@ public class KeychainModule extends ReactContextBaseJavaModule {
   @NonNull
   private CipherStorage getSelectedStorage(@Nullable final ReadableMap options)
     throws CryptoFailedException {
-    final String accessControl = getAccessControlOrDefault(options);
-    final boolean useBiometry = getUseBiometry(accessControl);
+    //final String accessControl = getAccessControlOrDefault(options);
+    //final boolean useBiometry = getUseBiometry(accessControl);
     final String cipherName = getSpecificStorageOrDefault(options);
 
     CipherStorage result = null;
@@ -267,9 +267,9 @@ public class KeychainModule extends ReactContextBaseJavaModule {
     }
 
     // attempt to access none existing storage will force fallback logic.
-    if (null == result) {
-      result = getCipherStorageForCurrentAPILevel(useBiometry);
-    }
+    //if (null == result) {
+    //  result = getCipherStorageForCurrentAPILevel(useBiometry);
+    //}
 
     return result;
   }
